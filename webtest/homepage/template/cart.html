@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <head>
+        
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+            <meta name="description" content="" />
+            <meta name="author" content="" />
+            <title>Shop Homepage - Start Bootstrap Template</title>
+            <!-- Favicon-->
+            <link rel="icon" type="image/x-icon" href="{%static 'favicon.ico'%}" />
+            <!-- Bootstrap icons-->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+            <!-- Core theme CSS (includes Bootstrap)-->
+            <link href="{%static 'styles.css'%}" rel="stylesheet" />
+
+            <script src="{%static 'Setting.js'%}"></script>
+        <script>
+                if(localStorage.getItem('cartcount')){
+                    var lastData = JSON.parse(localStorage.getItem('cartcount'));
+                    }
+                if (localStorage.getItem("ItemCartIn")){
+                    var CartinItem=JSON.parse(localStorage.getItem("ItemCartIn"));
+                    }
+            console.log(lastData)
+            console.log(CartinItem)
+        </script>
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+            <script src="{%static 'pagetop.js'%}"></script>
+        </nav>
+        <script src="{%static 'cartbtn.js'%}"></script>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Shop in style</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+                </div>
+            </div>
+        </header>
+        
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>
+                        내 카트
+                    </h3>
+                    <div id="cart_site" class="row gx-2 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-2 justify-content-center">
+                        <script>
+                            var host = document.getElementById("cart_site");
+                            CartinitemwithId=counter(CartinItem);
+                            Object.keys(CartinitemwithId).forEach(function(item){
+                            str='<div class="col-md-8" id="item_{4}">\
+                                <img alt="Bootstrap Image Preview" src="{%get_static_prefix%}shopitem-0{0}.png" />\
+                                <div class="card">\
+                                <h5 id="item_name" class="card-header">\
+                                    {1}\
+                                </h5>\
+                                <div class="card-body">\
+                                    <p id="item_content" class="card-text">{2}</p>\
+                                </div>\
+                                <div class="card-footer" id="item_count_{4}">\
+                                    {3}\
+                                </div></div></div>'.format(parseInt(item)+1,item_arr[item].name,item_arr[item].price,CartinitemwithId[item],parseInt(item));
+                            str2= '<div class="col-md-4" id="item_button_{0}">'.format(item)+
+                                '<div class="btn-group" role="group">\
+                                    <button class="btn btn-secondary" type="button" onclick="cartitem_add({0})">수량 +</button>'.format(item)+
+                                    '<button class="btn btn-secondary" type="button" onclick="cartitem_sub({0})">수량 -</button>'.format(item)+
+                                    '<button class="btn btn-secondary" type="button" onclick="cartitem_del({0})">제거</button>'.format(item)+
+                                '</div>'
+                            
+                            host.innerHTML += str+str2;
+                            });
+
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>    
