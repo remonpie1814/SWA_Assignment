@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coffee list</title>
+    </head>
+    <body>
+        <h1>커피리스트</h1>
+
+        
+        <ul>
+        
+        {% for coffee in coffee_list %}
+        <form method="POST">{% csrf_token %}
+            <li>{{coffee.name}}, {{coffee.price}}</li>
+            {% if coffee.button_on %}
+                <input type="text" name="name" value={{coffee.name}}>
+                <input type="text" name="price" value={{coffee.price}}>
+                <input type="checkbox" name="is_ice" value={{coffee.is_ice}}>
+                <input type="hidden" name="button_on" value={{coffee.button_on}}>
+            {% endif %}
+                <button type="submit" formaction="{%url 'coffee_update' coffee.id%}">수정</button>
+                <button type="submit" formaction="{%url 'coffee_delete' coffee.id%}">삭제</button>
+        </form>
+        {%endfor%}
+        
+        </ul>
+        
+        <form method="POST">{% csrf_token %}
+            Name : <input type="text" name="name" value="">
+            Price : <input type="text" name="price" value=0>
+            is ice : <input type="checkbox" name="is_ice" value=False>
+        <button formaction="{%url 'coffee_create' %}" type="submit">추가</button>
+        </form>
+        
+        
+    </body>
+</html>
