@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <ul>
+        {%for weapon in weapon_list%}
+            <li>{{weapon.name}}, {{weapon.stock}}</li>
+            <form method="POST">{% csrf_token %}
+                <input type="text" name="name" value={{weapon.name}}>
+                <input type="text" name="stock" value={{weapon.stock}}>
+                <button type="submit" formaction="{%url 'weapon_update' weapon.id%}">수정</button>
+                <button type="submit" formaction="{%url 'weapon_delete' weapon.id%}">삭제</button>
+            </form>
+        {%endfor%}
+        </ul>
+
+        <form method="POST">{% csrf_token %}
+            <input type="text" name="name" value="">
+            <input type="text" name="stock" value="">
+            <button type="submit" formaction="{% url 'weapon_create' %}">추가</button>
+        </form>
+
+    </body>
+</html>
