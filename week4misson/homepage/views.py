@@ -75,3 +75,28 @@ def weather_views(request):
         cityname=res["city"]
     
     return render(request,"weather_view.html",{"current_temperature":round(temperature,1),"current_windspeed":response["wind"]["speed"],"current_region":cityname})
+
+@api_view(["GET"])
+def busstop_view(request):
+    import pandas as pd
+    import numpy as np
+    df=pd.read_csv("homepage/data/bus.csv",encoding="cp949")
+
+    ipapiid=""
+    ipurl='http://api.ipstack.com/check?access_key=' + ipapiid
+    res=requests.get(ipurl).json()
+    lat=res["latitude"]
+    lon=res["longitude"]
+
+    # 정류장의 위도와 경도를 모두 n에 array형태로 담음
+    n=np.array(df[["위도","경도"]])
+    # 모든 정류장의 위도와 경도에서 현재 위치를 뺌
+    n2=n-np.array([lat,lon])
+    # 정류장위치-현재위치 한 벡터들의 norm을 계산해서 array로 만들음
+    norm_n2=np.linalg.norm(n2,axis=1)
+
+    # 그 중에서 가장 작은 norm의 index를 구해봄
+    minindex=norm_n2.argmin()
+    
+    result=str(df.loc[minindex]["도시명"])+" "+str(df.loc[minindex]["정류장 명칭"])
+    return render(request,"busstop.html",{"busstop":result})

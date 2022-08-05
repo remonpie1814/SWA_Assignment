@@ -5,7 +5,7 @@ from django.conf.urls import url
 from rest_framework.permissions import AllowAny
 from drf_yasg.views import get_schema_view 
 from drf_yasg import openapi
-from homepage.views import weapon_create,weapon_update,weapon_delete,weapon_view,whoami,echostr,weather_views
+from homepage.views import busstop_view, weapon_create,weapon_update,weapon_delete,weapon_view,whoami,echostr,weather_views
 
 
 
@@ -39,7 +39,8 @@ urlpatterns = [
     path("weapon/delete/<weapon_id>/",weapon_delete,name="weapon_delete"),
     path("whoami/",whoami,name="whoami"),
     path("echo/",echostr,name="echo"),
-    path("weather/",weather_views)
+    path("weather/",weather_views),
+    path("busstop/",busstop_view)
     
 ]
 

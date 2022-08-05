@@ -44,6 +44,48 @@ HTTP/1.1 200 OK
 </details>
 </details>
 
+
+<details markdown="1">
+<summary>가까운 버스 정류장</summary>
+
+<details markdown="1" style="margin-left:14px">
+<summary>/busstop</summary>
+
+**가까운 버스 정류장 알리기**
+----
+현재 위치에서 가장 가까운 버스 정류장을 알려줍니다
+
+* **URL**
+
+  /busstop
+
+* **Method:**
+
+  `GET`
+
+
+* **Data Params**
+
+  **Required:**
+
+  `API KEY=[String] - API KEY`  
+  `lat=[Float] - 위도`  
+  `lon=[Float] - 경도`  
+
+
+* **Response**
+
+  `busstop=[String] - 가장 가까운 버스 정류장의 명칭`  
+ 
+
+* **Success Response:**
+```
+HTTP/1.1 200 OK
+```
+</details>
+</details>
+
+
 <details markdown="1">
 <summary>무기</summary>
 
