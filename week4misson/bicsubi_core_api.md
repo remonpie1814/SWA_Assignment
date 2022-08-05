@@ -3,6 +3,48 @@
 
 ###### API Reference
 <details markdown="1">
+<summary>현재 날씨</summary>
+
+<details markdown="1" style="margin-left:14px">
+<summary>/weather</summary>
+
+**현재 날씨 보기**
+----
+현재 기온과 바람세기를 표시합니다.
+
+* **URL**
+
+  /weather
+
+* **Method:**
+
+  `GET`
+
+
+* **Data Params**
+
+  **Required:**
+
+  `API KEY=[String] - API KEY`  
+  `lat=[Float] - 위도`  
+  `lon=[Float] - 경도`  
+
+
+* **Response**
+
+  `current_region=[String] - 현재 지역`  
+  `current_temperture=[Float] - 현재 기온(섭씨)`  
+  `current_windspeed=[Float] - 현재 바람 세기(m/s)`  
+ 
+
+* **Success Response:**
+```
+HTTP/1.1 200 OK
+```
+</details>
+</details>
+
+<details markdown="1">
 <summary>무기</summary>
 
 <details markdown="1" style="margin-left:14px">
